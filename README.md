@@ -1,8 +1,8 @@
-#Herkkupersikka web store repository
+# Herkkupersikka web store repository
 
 Tech stack: React (frontend), Nestjs (backend), Postgres + Docker-Compose (database)
 
-#To start developing:
+# To start developing:
 
 in root directory: docker-compose up
 
