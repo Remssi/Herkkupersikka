@@ -1,9 +1,9 @@
 {
-    "private": true,
-    "name": "mono-repo",
-    "workspaces": [
-        "packages/*"
-    ],
-    "version": "1.0.0",
-    "license": "MIT"
+  "private": true,
+  "name": "mono-repo",
+  "workspaces": [
+    "apps/*"
+  ],
+  "version": "1.0.0",
+  "license": "MIT"
 }
