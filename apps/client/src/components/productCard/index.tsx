@@ -1,5 +1,4 @@
 import {
-  Chip,
   Card,
   CardActionArea,
   CardMedia,
@@ -11,6 +10,7 @@ import {
 import { Product } from "../../../../shared/types";
 import { makeStyles } from "@material-ui/core/styles";
 import CartIcon from "@material-ui/icons/AddShoppingCart";
+import { CategoryChip } from "../categoryChip";
 
 interface Props {
   productDetails: Product;
@@ -39,16 +39,7 @@ export const ProductCard: React.FC<Props> = ({ productDetails }) => {
           {manufacturer.name}
         </Typography>
         {categories.map((category) => (
-          <Chip
-            key={category.name}
-            label={category.name}
-            size="small"
-            style={{
-              backgroundColor: category.color,
-              color: category.textColor,
-            }}
-            onClick={() => console.log("clicked")}
-          />
+          <CategoryChip key={category.name} categoryDetails={category} />
         ))}
       </CardContent>
       <CardActions disableSpacing={true}>
@@ -63,12 +54,15 @@ export const ProductCard: React.FC<Props> = ({ productDetails }) => {
 };
 
 const useStyles = makeStyles({
+  /*
+    ! with too many categories, content exceeds maxHeight and becomes hidden
+  */
   card: {
     maxWidth: 243.5,
     maxHeight: 320,
     height: "100%",
   },
-  // placeholder color
+  // ** placeholder color until images are stored in the db, could also serve as fallback
   image: {
     backgroundColor: "#F5C6AA",
   },
@@ -79,6 +73,7 @@ const useStyles = makeStyles({
     fontSize: "0.8rem",
     color: "#5F3A1C",
   },
+  // TODO: check if nicer way to write this
   normalPrice: (currentPrice) =>
     currentPrice
       ? {
@@ -92,7 +87,13 @@ const useStyles = makeStyles({
     fontSize: "1.2rem",
     color: "#53D61F",
   },
+  // TODO: check if better way to style this and others with i.e. theme
   cartButton: {
     marginLeft: "auto",
+    color: "white",
+    backgroundColor: "#84BCDA",
+    "&:hover": {
+      backgroundColor: "#52a1cb",
+    },
   },
 });

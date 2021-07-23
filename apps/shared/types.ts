@@ -4,7 +4,7 @@ export interface Product {
   normalPrice: number;
   currentPrice?: number;
   description?: string;
-  // toDo: change to required later, change type if needed
+  // TODO: change to required later, change type if needed
   img?: File;
   nutrients?: string[];
   stock: number;
