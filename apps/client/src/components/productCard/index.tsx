@@ -16,6 +16,7 @@ interface Props {
   productDetails: Product;
 }
 
+// TODO: add image prop to CardMedia with the link to picture
 export const ProductCard: React.FC<Props> = ({ productDetails }) => {
   const { name, manufacturer, normalPrice, currentPrice, categories } =
     productDetails;
