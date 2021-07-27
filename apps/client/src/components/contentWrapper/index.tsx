@@ -14,6 +14,7 @@ const useStyles = makeStyles({
     margin: "auto",
     maxWidth: "1024px",
     width: "100%",
+    minHeight: "100vh",
     backgroundColor: "#F3F3F3",
     borderRadius: "10px",
   },
