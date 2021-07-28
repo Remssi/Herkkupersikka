@@ -7,7 +7,7 @@ interface Props {}
 export const Footer: React.FC<Props> = () => {
   const classes = useClasses();
   return (
-    <Box className={classes.footer}>
+    <Box component="footer" className={classes.footer}>
       <Box className={classes.logoAndLinks}>
         <Box className={classes.logo}>
           <Typography className={classes.logoText}>Herkkupersikka</Typography>

@@ -6,6 +6,7 @@ import { CardCollection } from "./cardCollection";
 import { Hero } from "./hero";
 import { Footer } from "./footer";
 import { Header } from "./header";
+import { Search } from "./search";
 
 export {
   ProductCard,
@@ -16,4 +17,5 @@ export {
   Hero,
   Footer,
   Header,
+  Search,
 };
