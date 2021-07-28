@@ -36,8 +36,12 @@ const useClasses = makeStyles({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    flexWrap: "wrap",
+    gap: "10px",
   },
   buttons: {
     display: "flex",
+    flexWrap: "wrap",
+    gap: "50px",
   },
 });
