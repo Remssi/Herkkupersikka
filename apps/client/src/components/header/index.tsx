@@ -1,4 +1,4 @@
-import { Box, InputAdornment, TextField, Typography } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Search } from "../";
 import { Categories } from "./Categories";

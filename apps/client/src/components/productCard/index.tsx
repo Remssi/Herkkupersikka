@@ -18,8 +18,13 @@ interface Props {
 
 // TODO: add image prop to CardMedia with the link to picture
 export const ProductCard: React.FC<Props> = ({ productDetails }) => {
-  const { name, manufacturer, normalPrice, currentPrice, categories } =
-    productDetails;
+  const {
+    name,
+    manufacturer,
+    normalPrice,
+    currentPrice,
+    categories,
+  } = productDetails;
 
   const classes = useStyles(currentPrice);
 
@@ -39,7 +44,7 @@ export const ProductCard: React.FC<Props> = ({ productDetails }) => {
         <Typography className={classes.manufacturer}>
           {manufacturer.name}
         </Typography>
-        {categories.map((category) => (
+        {categories.map(category => (
           <CategoryChip key={category.name} categoryDetails={category} />
         ))}
       </CardContent>
@@ -59,9 +64,8 @@ const useStyles = makeStyles({
     ! with too many categories, content exceeds maxHeight and becomes hidden
   */
   card: {
-    maxWidth: 243.5,
-    maxHeight: 320,
-    height: "100%",
+    width: 243.5,
+    height: 320,
   },
   // ** placeholder color until images are stored in the db, could also serve as fallback
   image: {
@@ -75,7 +79,7 @@ const useStyles = makeStyles({
     color: "#5F3A1C",
   },
   // TODO: check if nicer way to write this
-  normalPrice: (currentPrice) =>
+  normalPrice: currentPrice =>
     currentPrice
       ? {
           fontSize: "1.2rem",

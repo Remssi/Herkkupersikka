@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Box, Typography, Grid } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import { ProductCard } from "../productCard";
 import { makeStyles } from "@material-ui/core/styles";
 import { testProductDetails } from "../../testData";
@@ -24,13 +24,11 @@ export const CardCollection: React.FC<Props> = ({ collection, endPoint }) => {
   return (
     <Box className={classes.collection}>
       <Typography className={classes.collectionText}>{collection}</Typography>
-      <Grid container spacing={1}>
+      <Box className={classes.cardRow}>
         {products.map((product, index) => (
-          <Grid key={index} item xs={3}>
-            <ProductCard productDetails={product} />
-          </Grid>
+          <ProductCard key={index} productDetails={product} />
         ))}
-      </Grid>
+      </Box>
     </Box>
   );
 };
@@ -45,5 +43,11 @@ const useClasses = makeStyles({
   collectionText: {
     fontSize: "1.4em",
     color: "#84BCDA",
+  },
+  cardRow: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    gap: "10px",
   },
 });
