@@ -5,6 +5,7 @@ import { ContentWrapper } from "./contentWrapper";
 import { CardCollection } from "./cardCollection";
 import { Hero } from "./hero";
 import { Footer } from "./footer";
+import { Header } from "./header";
 
 export {
   ProductCard,
@@ -14,4 +15,5 @@ export {
   CardCollection,
   Hero,
   Footer,
+  Header,
 };
