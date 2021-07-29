@@ -38,10 +38,24 @@ const useClasses = makeStyles({
     alignItems: "center",
     flexWrap: "wrap",
     gap: "10px",
+    "@media (max-width:809px)": {
+      height: "var(--header-sm-height)",
+      alignItems: "center",
+      flexDirection: "column",
+      flexWrap: "nowrap",
+      justifyContent: "initial",
+    },
   },
   buttons: {
     display: "flex",
     flexWrap: "wrap",
     gap: "50px",
+    "@media (max-width:809px)": {
+      marginTop: "10px",
+      gap: "10px",
+      flexWrap: "nowrap",
+      flexDirection: "column",
+      alignItems: "center",
+    },
   },
 });

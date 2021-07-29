@@ -23,8 +23,7 @@ const useClasses = makeStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    // ! eslint warning
-    ["@media (max-width:559px)"]: {
+    "@media (max-width:559px)": {
       width: "220px",
       height: "220px",
     },
@@ -33,8 +32,7 @@ const useClasses = makeStyles({
   logoText: {
     color: "white",
     fontSize: "3em",
-    // ! eslint warning
-    ["@media (max-width:559px)"]: {
+    "@media (max-width:559px)": {
       fontSize: "1.75em",
     },
   },

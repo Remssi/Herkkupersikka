@@ -11,6 +11,7 @@ export const Search: React.FC<Props> = () => {
     <TextField
       variant="outlined"
       placeholder="Hae herkkuja"
+      className={classes.wrapper}
       InputProps={{
         className: classes.search,
         endAdornment: (
@@ -24,10 +25,13 @@ export const Search: React.FC<Props> = () => {
 };
 
 const useClasses = makeStyles({
+  wrapper: {
+    maxWidth: "390px",
+    width: "100%",
+  },
   search: {
-    width: "390px",
-    height: "40px",
     color: "#F5C6AA",
+    height: "40px",
   },
   searchIcon: {
     color: "#F5C6AA",
