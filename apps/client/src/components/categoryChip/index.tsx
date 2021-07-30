@@ -3,9 +3,10 @@ import { Category } from "../../../../shared/types";
 
 interface Props {
   categoryDetails: Category;
+  onClick?: () => void;
 }
 
-export const CategoryChip: React.FC<Props> = ({ categoryDetails }) => {
+export const CategoryChip: React.FC<Props> = ({ categoryDetails, onClick }) => {
   const { name, color, textColor } = categoryDetails;
 
   return (
@@ -16,7 +17,7 @@ export const CategoryChip: React.FC<Props> = ({ categoryDetails }) => {
         backgroundColor: color,
         color: textColor,
       }}
-      onClick={() => console.log("clicked")}
+      onClick={onClick}
     />
   );
 };

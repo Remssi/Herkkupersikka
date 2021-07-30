@@ -1,13 +1,8 @@
 import { useState, useEffect } from "react";
-import {
-  Typography,
-  Button,
-  Menu,
-  MenuItem,
-  ListItemText,
-} from "@material-ui/core";
+import { Typography, Button, Menu } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Category } from "../../../../shared/types";
+import { MenuItem } from "./MenuItem";
 
 interface Props {}
 
@@ -31,13 +26,24 @@ export const Categories: React.FC<Props> = () => {
       {
         name: "Pizzat",
         color: "#F5C6AA",
-        textColor: "white",
+        textColor: "#5f3a1c",
+        description: "maukkaita pizzoja",
+      },
+      {
+        name: "Sushit",
+        color: "#84BCDA",
+        textColor: "#5f3a1c",
+        description: "maukkaita pizzoja",
+      },
+      {
+        name: "Kebabit",
+        color: "#F7FB89",
+        textColor: "#5f3a1c",
         description: "maukkaita pizzoja",
       },
     ]);
   }, []);
 
-  // TODO: styling of menu and items
   return (
     <>
       <Button
@@ -49,6 +55,7 @@ export const Categories: React.FC<Props> = () => {
         <Typography className={classes.categoryText}>Kategoriat</Typography>
       </Button>
       <Menu
+        classes={{ paper: classes.ul }}
         elevation={0}
         getContentAnchorEl={null}
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
@@ -59,9 +66,7 @@ export const Categories: React.FC<Props> = () => {
         onClose={handleClose}
       >
         {categories.map((category: Category) => (
-          <MenuItem>
-            <ListItemText primary={category.name} />
-          </MenuItem>
+          <MenuItem key={category.name} category={category} />
         ))}
       </Menu>
     </>
@@ -77,9 +82,17 @@ const useClasses = makeStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    "&:hover": {
+      backgroundColor: "#FBE6DA",
+    },
   },
   categoryText: {
     fontSize: "1.5em",
     color: "white",
+  },
+  ul: {
+    minWidth: "50px",
+    borderRadius: "6px",
+    backgroundColor: "#FBE6DA",
   },
 });

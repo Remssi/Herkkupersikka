@@ -45,7 +45,11 @@ export const ProductCard: React.FC<Props> = ({ productDetails }) => {
           {manufacturer.name}
         </Typography>
         {categories.map(category => (
-          <CategoryChip key={category.name} categoryDetails={category} />
+          <CategoryChip
+            key={category.name}
+            categoryDetails={category}
+            onClick={() => console.log("clicked!")}
+          />
         ))}
       </CardContent>
       <CardActions disableSpacing={true}>
