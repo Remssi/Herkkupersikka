@@ -26,8 +26,8 @@ export const Search: React.FC<Props> = () => {
 
 const useClasses = makeStyles({
   wrapper: {
-    maxWidth: "390px",
-    width: "100%",
+    maxWidth: "100%",
+    width: "390px",
   },
   search: {
     color: "#F5C6AA",

@@ -1,27 +1,32 @@
 import { Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Search } from "../";
+import { Login } from "../login";
 import { Categories } from "./Categories";
 import { Logo } from "./Logo";
 
 interface Props {}
 
 export const Header: React.FC<Props> = () => {
-  const classes = useClasses();
+  const classes = useStyles();
 
   return (
-    <Box component="header" className={classes.header}>
-      <Box className={classes.buttons}>
-        <Logo />
-        <Categories />
-      </Box>
+    <>
+      <Login />
 
-      <Search />
-    </Box>
+      <Box component="header" className={classes.header}>
+        <Box className={classes.buttons}>
+          <Logo />
+          <Categories />
+        </Box>
+
+        <Search />
+      </Box>
+    </>
   );
 };
 
-const useClasses = makeStyles({
+const useStyles = makeStyles({
   header: {
     // variables in :root, App.css file
     height: "var(--header-height)",
