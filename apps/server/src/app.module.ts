@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Review } from './reviews/entities/review.entity';
 import { ReviewsModule } from './reviews/reviews.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -14,10 +14,11 @@ import { ReviewsModule } from './reviews/reviews.module';
       username: 'user',
       password: 'password',
       database: 'db',
-      entities: [Review],
+      autoLoadEntities: true,
       synchronize: true,
     }),
     ReviewsModule,
+    ProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

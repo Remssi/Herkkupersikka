@@ -1,9 +1,6 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Column } from 'typeorm';
 
 export class CreateReviewDto {
-  @PrimaryGeneratedColumn()
-  id: number;
-
   @Column()
   username: string;
 

@@ -1,19 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { CreateReviewDto } from './dto/create-review.dto';
-import { UpdateReviewDto } from './dto/update-review.dto';
-import { Connection, Repository } from 'typeorm';
-import { Review } from './entities/review.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Connection, Repository } from 'typeorm';
+import { CreateProductDto } from './dto/create-product.dto';
+import { UpdateProductDto } from './dto/update-product.dto';
+import { Product } from './entities/product.entity';
 
 @Injectable()
-export class ReviewsService {
+export class ProductsService {
   constructor(
-    @InjectRepository(Review)
-    private reviewsRepository: Repository<Review>,
+    @InjectRepository(Product)
+    private productsRepository: Repository<Product>,
     private connection: Connection,
   ) {}
 
-  async create(createReviewDto: CreateReviewDto) {
+  async create(createProductDto: CreateProductDto) {
     const queryRunner = this.connection.createQueryRunner();
 
     await queryRunner.connect();
@@ -21,7 +21,7 @@ export class ReviewsService {
     await queryRunner.startTransaction();
 
     try {
-      await queryRunner.manager.save(createReviewDto);
+      await queryRunner.manager.save(createProductDto);
 
       await queryRunner.commitTransaction();
     } catch (error) {
@@ -32,14 +32,14 @@ export class ReviewsService {
   }
 
   findAll() {
-    return this.reviewsRepository.find();
+    return this.productsRepository.find();
   }
 
   findOne(id: number) {
-    return this.reviewsRepository.findOne(id);
+    return this.productsRepository.findOne(id);
   }
 
-  async update(id: number, updateReviewDto: UpdateReviewDto) {
+  async update(id: number, updateProductDto: UpdateProductDto) {
     const queryRunner = this.connection.createQueryRunner();
 
     await queryRunner.connect();
@@ -47,7 +47,7 @@ export class ReviewsService {
     await queryRunner.startTransaction();
 
     try {
-      await queryRunner.manager.save(updateReviewDto);
+      await queryRunner.manager.save(updateProductDto);
 
       await queryRunner.commitTransaction();
     } catch (error) {
@@ -58,6 +58,6 @@ export class ReviewsService {
   }
 
   remove(id: number) {
-    return this.reviewsRepository.delete(id);
+    return this.productsRepository.delete(id);
   }
 }
