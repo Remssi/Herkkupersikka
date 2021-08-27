@@ -19,7 +19,6 @@ export class ReviewsController {
   @Post()
   create(@Body() newReview: CreateReviewDto) {
     const r = new Review();
-    r.username = newReview.username;
     r.rating = newReview.rating;
     r.reviewText = newReview.reviewText;
     console.log('ok, lets create:', r);
