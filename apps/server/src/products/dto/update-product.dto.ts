@@ -10,13 +10,16 @@ export class UpdateProductDto extends PartialType(CreateProductDto) {
   normalPrice: number;
 
   @Column()
+  currentPrice: number;
+
+  @Column()
   description: string;
 
   @Column()
   image: string;
 
   @Column()
-  nutrients: string[];
+  nutrients: string;
 
   @Column()
   stock: number;

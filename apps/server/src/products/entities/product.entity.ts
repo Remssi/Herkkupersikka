@@ -20,10 +20,10 @@ export class Product {
   @Column()
   name: string;
 
-  @Column()
+  @Column('float')
   normalPrice: number;
 
-  @Column()
+  @Column('float')
   currentPrice: number;
 
   @Column()
@@ -35,7 +35,7 @@ export class Product {
   @Column()
   nutrients: string;
 
-  @Column()
+  @Column('int')
   stock: number;
 
   @ManyToOne(() => Manufacturer, (manufacturer) => manufacturer.products)

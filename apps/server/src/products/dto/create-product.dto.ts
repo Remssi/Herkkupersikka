@@ -18,7 +18,7 @@ export class CreateProductDto {
   image: string;
 
   @Column()
-  nutrients: string[];
+  nutrients: string;
 
   @Column()
   stock: number;

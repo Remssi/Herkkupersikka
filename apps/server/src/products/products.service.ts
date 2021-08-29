@@ -21,7 +21,8 @@ export class ProductsService {
     await queryRunner.startTransaction();
 
     try {
-      await queryRunner.manager.save(createProductDto);
+      const product = new Product();
+      await queryRunner.manager.save(Object.assign(product, createProductDto));
 
       await queryRunner.commitTransaction();
     } catch (error) {
@@ -48,7 +49,12 @@ export class ProductsService {
     await queryRunner.startTransaction();
 
     try {
-      await queryRunner.manager.save(updateProductDto);
+      const updatedProduct = new Product();
+      await queryRunner.manager.update(
+        Product,
+        id,
+        Object.assign(updatedProduct, updateProductDto),
+      );
 
       await queryRunner.commitTransaction();
     } catch (error) {
@@ -58,7 +64,7 @@ export class ProductsService {
     }
   }
 
-  remove(id: number) {
-    return this.productsRepository.delete(id);
+  async remove(id: number) {
+    return await this.productsRepository.delete(id);
   }
 }
