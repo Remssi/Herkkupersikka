@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Category } from 'src/categories/entities/category.entity';
 import { Connection, Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -10,6 +11,8 @@ export class ProductsService {
   constructor(
     @InjectRepository(Product)
     private productsRepository: Repository<Product>,
+    @InjectRepository(Category)
+    private categoryRepository: Repository<Category>,
     private connection: Connection,
   ) {}
 
@@ -22,6 +25,11 @@ export class ProductsService {
 
     try {
       const product = new Product();
+      // ! testing, link to categories param
+      const category = await this.categoryRepository.findOne(5);
+
+      product.categories = [category];
+
       await queryRunner.manager.save(Object.assign(product, createProductDto));
 
       await queryRunner.commitTransaction();
@@ -38,7 +46,7 @@ export class ProductsService {
   }
 
   findOne(id: number) {
-    return this.productsRepository.findOne(id);
+    return this.productsRepository.findOne(id, { relations: ['categories'] });
   }
 
   async update(id: number, updateProductDto: UpdateProductDto) {
