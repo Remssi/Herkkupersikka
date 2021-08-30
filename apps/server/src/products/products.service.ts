@@ -16,7 +16,7 @@ export class ProductsService {
     private connection: Connection,
   ) {}
 
-  async create(createProductDto: CreateProductDto) {
+  async create(createProductDto: CreateProductDto, categoryIds: number[]) {
     const queryRunner = this.connection.createQueryRunner();
 
     await queryRunner.connect();
@@ -25,10 +25,9 @@ export class ProductsService {
 
     try {
       const product = new Product();
-      // ! testing, link to categories param
-      const category = await this.categoryRepository.findOne(5);
 
-      product.categories = [category];
+      const categories = await this.categoryRepository.findByIds(categoryIds);
+      product.categories = categories;
 
       await queryRunner.manager.save(Object.assign(product, createProductDto));
 
