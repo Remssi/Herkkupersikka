@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Box, Button, Drawer, IconButton, TextField } from "@material-ui/core";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
-import PersonIcon from "@material-ui/icons/Person";
-import CloseIcon from "@material-ui/icons/Close";
+import { Box, Button, Drawer, IconButton, TextField } from "@mui/material";
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import PersonIcon from "@mui/icons-material/Person";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface Props {}
 

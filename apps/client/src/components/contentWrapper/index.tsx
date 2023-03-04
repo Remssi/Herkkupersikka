@@ -1,7 +1,10 @@
-import { Box } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Box } from "@mui/material";
+import makeStyles from "@mui/styles/makeStyles";
+import { ReactNode } from "react";
 
-interface Props {}
+interface Props {
+  children?: ReactNode;
+}
 
 // * This wraps all the actual content in the page, does not include header & footer
 export const ContentWrapper: React.FC<Props> = ({ children }) => {

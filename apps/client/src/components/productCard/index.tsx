@@ -6,10 +6,10 @@ import {
   CardActions,
   Typography,
   IconButton,
-} from "@material-ui/core";
+} from "@mui/material";
 import { Product } from "../../../../shared/types";
-import { makeStyles } from "@material-ui/core/styles";
-import CartIcon from "@material-ui/icons/AddShoppingCart";
+import makeStyles from '@mui/styles/makeStyles';
+import CartIcon from "@mui/icons-material/AddShoppingCart";
 import { CategoryChip } from "../categoryChip";
 
 interface Props {
@@ -55,7 +55,7 @@ export const ProductCard: React.FC<Props> = ({ productDetails }) => {
       <CardActions disableSpacing={true}>
         <Typography className={classes.normalPrice}>{normalPrice}</Typography>
         <Typography className={classes.currentPrice}>{currentPrice}</Typography>
-        <IconButton className={classes.cartButton}>
+        <IconButton className={classes.cartButton} size="large">
           <CartIcon />
         </IconButton>
       </CardActions>

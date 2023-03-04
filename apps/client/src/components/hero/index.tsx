@@ -1,5 +1,5 @@
-import { CardMedia, CardActionArea } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { CardMedia, CardActionArea } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 
 interface Props {}
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Typography, Button, Menu } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Typography, Button, Menu } from "@mui/material";
+import makeStyles from "@mui/styles/makeStyles";
 import { Category } from "../../../../shared/types";
 import { MenuItem } from "./MenuItem";
 
@@ -57,7 +57,6 @@ export const Categories: React.FC<Props> = () => {
       <Menu
         classes={{ paper: classes.ul }}
         elevation={0}
-        getContentAnchorEl={null}
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         transformOrigin={{ vertical: "top", horizontal: "left" }}
         anchorEl={anchorElement}

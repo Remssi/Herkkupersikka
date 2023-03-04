@@ -1,4 +1,4 @@
-import { Chip } from "@material-ui/core";
+import { Chip } from "@mui/material";
 import { Category } from "../../../../shared/types";
 
 interface Props {
