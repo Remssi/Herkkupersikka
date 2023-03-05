@@ -36,7 +36,11 @@ export class ReviewsService {
   }
 
   findOne(id: number) {
-    return this.reviewsRepository.findOne(id);
+    return this.reviewsRepository.findOne({
+      where: {
+        id: id,
+      },
+    });
   }
 
   async update(id: number, updateReviewDto: UpdateReviewDto) {
