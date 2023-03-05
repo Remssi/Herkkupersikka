@@ -3,9 +3,10 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
+  Header,
 } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
@@ -21,6 +22,8 @@ export class CategoriesController {
   }
 
   @Get()
+  @Header('X-Total-Count', '10')
+  @Header('Access-Control-Expose-Headers', 'X-Total-Count')
   findAll() {
     return this.categoriesService.findAll();
   }
@@ -30,7 +33,7 @@ export class CategoriesController {
     return this.categoriesService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(
     @Param('id') id: string,
     @Body() updateCategoryDto: UpdateCategoryDto,
