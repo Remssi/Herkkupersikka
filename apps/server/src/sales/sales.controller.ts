@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Header,
+} from '@nestjs/common';
 import { SalesService } from './sales.service';
 import { CreateSaleDto } from './dto/create-sale.dto';
 import { UpdateSaleDto } from './dto/update-sale.dto';
@@ -13,6 +22,8 @@ export class SalesController {
   }
 
   @Get()
+  @Header('X-Total-Count', '10')
+  @Header('Access-Control-Expose-Headers', 'X-Total-Count')
   findAll() {
     return this.salesService.findAll();
   }

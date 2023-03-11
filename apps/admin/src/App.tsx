@@ -3,6 +3,12 @@ import jsonServerProvider from "ra-data-json-server";
 import { CategoryList } from "./category/CategoryList";
 import { CategoryEdit } from "./category/CategoryEdit";
 import { CategoryCreate } from "./category/CategoryCreate";
+import { ManufacturerList } from "./manufacturer/ManufacturerList";
+import { ManufacturerEdit } from "./manufacturer/ManufacturerEdit";
+import { ProductList } from "./product/ProductList";
+import { ProductEdit } from "./product/ProductEdit";
+import { SaleList } from "./sale/SaleList";
+import { SaleEdit } from "./sale/SaleEdit";
 
 const dataProvider = jsonServerProvider("http://localhost:3001/api");
 
@@ -13,7 +19,24 @@ const App = () => (
       list={CategoryList}
       edit={CategoryEdit}
       create={CategoryCreate}
+      recordRepresentation="name"
     />
+
+    <Resource
+      name="manufacturers"
+      list={ManufacturerList}
+      edit={ManufacturerEdit}
+      recordRepresentation="name"
+    />
+
+    <Resource
+      name="sales"
+      list={SaleList}
+      edit={SaleEdit}
+      recordRepresentation="multiplier"
+    />
+
+    <Resource name="products" list={ProductList} edit={ProductEdit} />
   </Admin>
 );
 

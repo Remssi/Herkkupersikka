@@ -3,13 +3,19 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
+  Header,
+  Put,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { Product } from './entities/product.entity';
+
+export interface ProductWithCategoryIds extends Product {
+  categoryIds: number[];
+}
 
 @Controller('products')
 export class ProductsController {
@@ -24,6 +30,8 @@ export class ProductsController {
   }
 
   @Get()
+  @Header('X-Total-Count', '10')
+  @Header('Access-Control-Expose-Headers', 'X-Total-Count')
   findAll() {
     return this.productsService.findAll();
   }
@@ -33,7 +41,7 @@ export class ProductsController {
     return this.productsService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
     return this.productsService.update(+id, updateProductDto);
   }

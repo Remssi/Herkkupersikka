@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Header,
+} from '@nestjs/common';
 import { ManufacturersService } from './manufacturers.service';
 import { CreateManufacturerDto } from './dto/create-manufacturer.dto';
 import { UpdateManufacturerDto } from './dto/update-manufacturer.dto';
@@ -13,6 +22,8 @@ export class ManufacturersController {
   }
 
   @Get()
+  @Header('X-Total-Count', '10')
+  @Header('Access-Control-Expose-Headers', 'X-Total-Count')
   findAll() {
     return this.manufacturersService.findAll();
   }
@@ -23,7 +34,10 @@ export class ManufacturersController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateManufacturerDto: UpdateManufacturerDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateManufacturerDto: UpdateManufacturerDto,
+  ) {
     return this.manufacturersService.update(+id, updateManufacturerDto);
   }
 

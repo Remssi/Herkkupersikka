@@ -5,6 +5,7 @@ import { Connection, Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
+import { ProductWithCategoryIds } from './products.controller';
 
 @Injectable()
 export class ProductsService {
@@ -40,8 +41,24 @@ export class ProductsService {
     }
   }
 
-  findAll() {
-    return this.productsRepository.find();
+  async findAll() {
+    const products = await this.productsRepository.find({
+      relations: ['categories', 'manufacturer', 'sale'],
+    });
+
+    const productsWithCategoryIds: ProductWithCategoryIds[] = [];
+
+    // add categoryIds array for react-admin's ReferenceArrayField component
+    // TODO: make custom react admin component, which uses directly returned category data
+    products.map((product) => {
+      const productWithCategoryIds: ProductWithCategoryIds = {
+        ...product,
+        categoryIds: product.categories.map((category) => category.id),
+      };
+      productsWithCategoryIds.push(productWithCategoryIds);
+    });
+
+    return productsWithCategoryIds;
   }
 
   findOne(id: number) {
@@ -49,7 +66,7 @@ export class ProductsService {
       where: {
         id: id,
       },
-      relations: ['categories'],
+      relations: ['categories', 'manufacturer', 'sale'],
     });
   }
 
@@ -61,11 +78,29 @@ export class ProductsService {
     await queryRunner.startTransaction();
 
     try {
+      const {
+        currentPrice,
+        description,
+        image,
+        name,
+        normalPrice,
+        nutrients,
+        stock,
+      } = updateProductDto;
+
       const updatedProduct = new Product();
       await queryRunner.manager.update(
         Product,
         id,
-        Object.assign(updatedProduct, updateProductDto),
+        Object.assign(updatedProduct, {
+          currentPrice,
+          description,
+          image,
+          name,
+          normalPrice,
+          nutrients,
+          stock,
+        }),
       );
 
       await queryRunner.commitTransaction();
