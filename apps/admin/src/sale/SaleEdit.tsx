@@ -9,7 +9,7 @@ import {
 export const SaleEdit = () => (
   <Edit>
     <SimpleForm>
-      <TextInput source="id" />
+      <TextInput source="id" disabled />
       <NumberInput source="multiplier" />
       <DateInput source="startDate" />
       <DateInput source="endDate" />

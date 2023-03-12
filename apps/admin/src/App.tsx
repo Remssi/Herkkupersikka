@@ -10,6 +10,8 @@ import { ProductEdit } from "./product/ProductEdit";
 import { SaleList } from "./sale/SaleList";
 import { SaleEdit } from "./sale/SaleEdit";
 import { ProductCreate } from "./product/ProductCreate";
+import { SaleCreate } from "./sale/SaleCreate";
+import { ManufacturerCreate } from "./manufacturer/ManufacturerCreate";
 
 const dataProvider = jsonServerProvider("http://localhost:3001/api");
 
@@ -27,6 +29,7 @@ const App = () => (
       name="manufacturers"
       list={ManufacturerList}
       edit={ManufacturerEdit}
+      create={ManufacturerCreate}
       recordRepresentation="name"
     />
 
@@ -34,6 +37,7 @@ const App = () => (
       name="sales"
       list={SaleList}
       edit={SaleEdit}
+      create={SaleCreate}
       recordRepresentation="multiplier"
     />
 

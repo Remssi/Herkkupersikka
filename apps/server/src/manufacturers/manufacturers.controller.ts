@@ -3,7 +3,7 @@ import {
   Get,
   Post,
   Body,
-  Patch,
+  Put,
   Param,
   Delete,
   Header,
@@ -33,7 +33,7 @@ export class ManufacturersController {
     return this.manufacturersService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(
     @Param('id') id: string,
     @Body() updateManufacturerDto: UpdateManufacturerDto,

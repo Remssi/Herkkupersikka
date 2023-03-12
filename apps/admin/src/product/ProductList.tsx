@@ -16,7 +16,7 @@ export const ProductList = () => (
       <TextField source="name" />
       <ReferenceField
         source="manufacturerId"
-        label="Manufactorer"
+        label="Manufacturer"
         reference="manufacturers"
       />
       <ReferenceArrayField

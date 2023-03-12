@@ -13,9 +13,28 @@ export class SalesService {
     private connection: Connection,
   ) {}
 
-  // TODO
-  create(createSaleDto: CreateSaleDto) {
-    return 'This action adds a new sale';
+  async create(createSaleDto: CreateSaleDto) {
+    const queryRunner = this.connection.createQueryRunner();
+
+    await queryRunner.connect();
+
+    await queryRunner.startTransaction();
+
+    try {
+      const { multiplier, startDate, endDate } = createSaleDto;
+
+      const sale = new Sale();
+      await queryRunner.manager.save(
+        Object.assign(sale, { multiplier, startDate, endDate }),
+      );
+
+      await queryRunner.commitTransaction();
+    } catch (error) {
+      console.log(error);
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
   }
 
   findAll() {
@@ -30,13 +49,33 @@ export class SalesService {
     });
   }
 
-  // TODO
-  update(id: number, updateSaleDto: UpdateSaleDto) {
-    return `This action updates a #${id} sale`;
+  async update(id: number, updateSaleDto: UpdateSaleDto) {
+    const queryRunner = this.connection.createQueryRunner();
+
+    await queryRunner.connect();
+
+    await queryRunner.startTransaction();
+
+    try {
+      const { multiplier, startDate, endDate } = updateSaleDto;
+
+      const sale = new Sale();
+      await queryRunner.manager.update(
+        Sale,
+        id,
+        Object.assign(sale, { multiplier, startDate, endDate }),
+      );
+
+      await queryRunner.commitTransaction();
+    } catch (error) {
+      console.log(error);
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
   }
 
-  // TODO
-  remove(id: number) {
-    return `This action removes a #${id} sale`;
+  async remove(id: number) {
+    return await this.salesRepository.delete(id);
   }
 }

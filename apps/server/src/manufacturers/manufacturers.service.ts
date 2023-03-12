@@ -13,9 +13,26 @@ export class ManufacturersService {
     private connection: Connection,
   ) {}
 
-  // TODO
-  create(createManufacturerDto: CreateManufacturerDto) {
-    return 'This action adds a new manufacturer';
+  async create(createManufacturerDto: CreateManufacturerDto) {
+    const queryRunner = this.connection.createQueryRunner();
+
+    await queryRunner.connect();
+
+    await queryRunner.startTransaction();
+
+    try {
+      const { name } = createManufacturerDto;
+
+      const manufacturer = new Manufacturer();
+      await queryRunner.manager.save(Object.assign(manufacturer, { name }));
+
+      await queryRunner.commitTransaction();
+    } catch (error) {
+      console.log(error);
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
   }
 
   findAll() {
@@ -30,13 +47,33 @@ export class ManufacturersService {
     });
   }
 
-  // TODO
-  update(id: number, updateManufacturerDto: UpdateManufacturerDto) {
-    return `This action updates a #${id} manufacturer`;
+  async update(id: number, updateManufacturerDto: UpdateManufacturerDto) {
+    const queryRunner = this.connection.createQueryRunner();
+
+    await queryRunner.connect();
+
+    await queryRunner.startTransaction();
+
+    try {
+      const { name } = updateManufacturerDto;
+
+      const manufacturer = new Manufacturer();
+      await queryRunner.manager.update(
+        Manufacturer,
+        id,
+        Object.assign(manufacturer, { name }),
+      );
+
+      await queryRunner.commitTransaction();
+    } catch (error) {
+      console.log(error);
+      await queryRunner.rollbackTransaction();
+    } finally {
+      await queryRunner.release();
+    }
   }
 
-  // TODO
-  remove(id: number) {
-    return `This action removes a #${id} manufacturer`;
+  async remove(id: number) {
+    return await this.manufacturersRepository.delete(id);
   }
 }
