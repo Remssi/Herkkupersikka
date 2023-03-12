@@ -17,7 +17,7 @@ export class ProductsService {
     private connection: Connection,
   ) {}
 
-  async create(createProductDto: CreateProductDto, categoryIds: number[]) {
+  async create(createProductDto: CreateProductDto) {
     const queryRunner = this.connection.createQueryRunner();
 
     await queryRunner.connect();
@@ -25,12 +25,40 @@ export class ProductsService {
     await queryRunner.startTransaction();
 
     try {
+      const {
+        currentPrice,
+        description,
+        image,
+        name,
+        normalPrice,
+        nutrients,
+        stock,
+        manufacturerId,
+        saleId,
+        categoryIds,
+      } = createProductDto;
+
+      // update categories join table
+      const allCategories = await queryRunner.manager.find(Category);
+      const newProductCategories = allCategories.filter((category) =>
+        categoryIds.includes(category.id),
+      );
+
       const product = new Product();
-
-      const categories = await this.categoryRepository.findByIds(categoryIds);
-      product.categories = categories;
-
-      await queryRunner.manager.save(Object.assign(product, createProductDto));
+      await queryRunner.manager.save(
+        Object.assign(product, {
+          currentPrice,
+          description,
+          image,
+          name,
+          normalPrice,
+          nutrients,
+          stock,
+          manufacturerId,
+          saleId,
+          categories: newProductCategories,
+        }),
+      );
 
       await queryRunner.commitTransaction();
     } catch (error) {

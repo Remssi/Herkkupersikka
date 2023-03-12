@@ -9,6 +9,7 @@ import { ProductList } from "./product/ProductList";
 import { ProductEdit } from "./product/ProductEdit";
 import { SaleList } from "./sale/SaleList";
 import { SaleEdit } from "./sale/SaleEdit";
+import { ProductCreate } from "./product/ProductCreate";
 
 const dataProvider = jsonServerProvider("http://localhost:3001/api");
 
@@ -36,7 +37,12 @@ const App = () => (
       recordRepresentation="multiplier"
     />
 
-    <Resource name="products" list={ProductList} edit={ProductEdit} />
+    <Resource
+      name="products"
+      list={ProductList}
+      edit={ProductEdit}
+      create={ProductCreate}
+    />
   </Admin>
 );
 

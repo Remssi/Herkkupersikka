@@ -7,10 +7,15 @@ export class CreateProductDto {
 
   description: string;
 
-  // TODO: change to proper type, support multiple imgs
   image: string;
 
   nutrients: string;
 
   stock: number;
+
+  manufacturerId: number;
+
+  saleId: number;
+
+  categoryIds: number[];
 }
