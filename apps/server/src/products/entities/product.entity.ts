@@ -41,7 +41,13 @@ export class Product {
   @ManyToOne(() => Manufacturer, (manufacturer) => manufacturer.products)
   manufacturer: Manufacturer;
 
-  @ManyToMany(() => Category)
+  @Column()
+  manufacturerId: number;
+
+  @ManyToMany(() => Category, {
+    // ? cascade is not explicit way of handling join table, use something else?
+    cascade: true,
+  })
   @JoinTable()
   categories: Category[];
 
@@ -50,4 +56,7 @@ export class Product {
 
   @ManyToOne(() => Sale, (sale) => sale.products)
   sale: Sale;
+
+  @Column()
+  saleId: number;
 }

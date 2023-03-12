@@ -61,13 +61,20 @@ export class ProductsService {
     return productsWithCategoryIds;
   }
 
-  findOne(id: number) {
-    return this.productsRepository.findOne({
+  async findOne(id: number) {
+    const product = await this.productsRepository.findOne({
       where: {
         id: id,
       },
       relations: ['categories', 'manufacturer', 'sale'],
     });
+
+    const productWithCategoryIds: ProductWithCategoryIds = {
+      ...product,
+      categoryIds: product.categories.map((category) => category.id),
+    };
+
+    return productWithCategoryIds;
   }
 
   async update(id: number, updateProductDto: UpdateProductDto) {
@@ -79,6 +86,7 @@ export class ProductsService {
 
     try {
       const {
+        id,
         currentPrice,
         description,
         image,
@@ -86,13 +94,24 @@ export class ProductsService {
         normalPrice,
         nutrients,
         stock,
+        manufacturerId,
+        saleId,
+        categoryIds,
       } = updateProductDto;
 
+      // update categories join table
+      const allCategories = await queryRunner.manager.find(Category);
+      const newProductCategories = allCategories.filter((category) =>
+        categoryIds.includes(category.id),
+      );
+
+      console.log('new cates', newProductCategories);
+
       const updatedProduct = new Product();
-      await queryRunner.manager.update(
+      await queryRunner.manager.save(
         Product,
-        id,
         Object.assign(updatedProduct, {
+          id,
           currentPrice,
           description,
           image,
@@ -100,6 +119,9 @@ export class ProductsService {
           normalPrice,
           nutrients,
           stock,
+          manufacturerId,
+          saleId,
+          categories: newProductCategories,
         }),
       );
 

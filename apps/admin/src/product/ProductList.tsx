@@ -15,7 +15,7 @@ export const ProductList = () => (
       <TextField source="id" />
       <TextField source="name" />
       <ReferenceField
-        source="manufacturer.id"
+        source="manufacturerId"
         label="Manufactorer"
         reference="manufacturers"
       />
@@ -30,10 +30,7 @@ export const ProductList = () => (
       </ReferenceArrayField>
       <NumberField source="normalPrice" />
       <NumberField source="currentPrice" />
-      <ReferenceField source="sale.id" label="Sale" reference="sales" />
-      <TextField source="description" />
-      <TextField source="image" />
-      <TextField source="nutrients" />
+      <ReferenceField source="saleId" label="Sale" reference="sales" />
       <NumberField source="stock" />
     </Datagrid>
   </List>

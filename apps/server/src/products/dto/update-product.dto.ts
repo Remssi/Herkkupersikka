@@ -2,6 +2,8 @@ import { PartialType } from '@nestjs/mapped-types';
 import { CreateProductDto } from './create-product.dto';
 
 export class UpdateProductDto extends PartialType(CreateProductDto) {
+  id: string;
+
   name: string;
 
   normalPrice: number;
@@ -15,4 +17,10 @@ export class UpdateProductDto extends PartialType(CreateProductDto) {
   nutrients: string;
 
   stock: number;
+
+  manufacturerId: number;
+
+  saleId: number;
+
+  categoryIds: number[];
 }

@@ -13,7 +13,7 @@ export const ProductEdit = () => (
       <TextInput source="id" disabled />
       <TextInput source="name" />
       <ReferenceInput
-        source="manufacturer.id"
+        source="manufacturerId"
         label="Manufacturer"
         reference="manufacturers"
       />
@@ -24,7 +24,7 @@ export const ProductEdit = () => (
       />
       <NumberInput source="normalPrice" />
       <NumberInput source="currentPrice" />
-      <ReferenceInput source="sale.id" label="Sale" reference="sales" />
+      <ReferenceInput source="saleId" label="Sale" reference="sales" />
       <TextInput source="description" />
       <TextInput source="image" />
       <TextInput source="nutrients" />
