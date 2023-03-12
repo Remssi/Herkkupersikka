@@ -12,17 +12,21 @@ import { SaleEdit } from "./sale/SaleEdit";
 import { ProductCreate } from "./product/ProductCreate";
 import { SaleCreate } from "./sale/SaleCreate";
 import { ManufacturerCreate } from "./manufacturer/ManufacturerCreate";
+import LocalPizzaIcon from "@mui/icons-material/LocalPizza";
+import FactoryIcon from "@mui/icons-material/Factory";
+import CategoryIcon from "@mui/icons-material/Category";
+import DiscountIcon from "@mui/icons-material/Discount";
 
 const dataProvider = jsonServerProvider("http://localhost:3001/api");
 
 const App = () => (
   <Admin dataProvider={dataProvider}>
     <Resource
-      name="categories"
-      list={CategoryList}
-      edit={CategoryEdit}
-      create={CategoryCreate}
-      recordRepresentation="name"
+      name="products"
+      list={ProductList}
+      edit={ProductEdit}
+      create={ProductCreate}
+      icon={LocalPizzaIcon}
     />
 
     <Resource
@@ -31,6 +35,16 @@ const App = () => (
       edit={ManufacturerEdit}
       create={ManufacturerCreate}
       recordRepresentation="name"
+      icon={FactoryIcon}
+    />
+
+    <Resource
+      name="categories"
+      list={CategoryList}
+      edit={CategoryEdit}
+      create={CategoryCreate}
+      recordRepresentation="name"
+      icon={CategoryIcon}
     />
 
     <Resource
@@ -39,13 +53,7 @@ const App = () => (
       edit={SaleEdit}
       create={SaleCreate}
       recordRepresentation="multiplier"
-    />
-
-    <Resource
-      name="products"
-      list={ProductList}
-      edit={ProductEdit}
-      create={ProductCreate}
+      icon={DiscountIcon}
     />
   </Admin>
 );

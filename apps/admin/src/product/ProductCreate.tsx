@@ -10,7 +10,6 @@ import {
 export const ProductCreate = () => (
   <Create>
     <SimpleForm>
-      <TextInput source="id" disabled />
       <TextInput source="name" />
       <ReferenceInput
         source="manufacturerId"

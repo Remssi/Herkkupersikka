@@ -1,12 +1,12 @@
 import { Edit, SimpleForm, TextInput, useRecordContext } from "react-admin";
 
-const PostTitle = () => {
+const CategoryTitle = () => {
   const record = useRecordContext();
   return <span>Category: {record ? `${record.name}` : ""}</span>;
 };
 
 export const CategoryEdit = () => (
-  <Edit title={<PostTitle />}>
+  <Edit title={<CategoryTitle />}>
     <SimpleForm>
       <TextInput source="id" disabled />
       <TextInput source="name" />
