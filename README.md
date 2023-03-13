@@ -34,7 +34,7 @@ The purpose of this project was to try out Nest.js as backend framework, as well
 - CRUD products :heavy_check_mark:
 - CRUD manufacturers :heavy_check_mark:
 - CRUD sales :heavy_check_mark:
-- CRUD :heavy_check_mark:
+- CRUD categories :heavy_check_mark:
 
 ## Core Technologies
 
