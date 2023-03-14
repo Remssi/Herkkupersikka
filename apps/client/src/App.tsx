@@ -1,7 +1,8 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Main } from "./pages/main";
-import { ContentWrapper, Footer, Header } from "./components";
+import { Product } from "./pages/product";
+import { Footer, Header } from "./components";
 import {
   createTheme,
   StyledEngineProvider,
@@ -18,10 +19,7 @@ const App = () => {
           <Header />
 
           <Routes>
-            <Route
-              path="/products/:productId"
-              element={<ContentWrapper />}
-            ></Route>
+            <Route path="/products/:productId" element={<Product />}></Route>
 
             <Route path="/categories/:categoryId"></Route>
 

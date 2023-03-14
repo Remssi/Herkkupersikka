@@ -8,9 +8,11 @@ import {
   IconButton,
 } from "@mui/material";
 import { Product } from "../../../../shared/types";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import CartIcon from "@mui/icons-material/AddShoppingCart";
 import { CategoryChip } from "../categoryChip";
+import { redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface Props {
   productDetails: Product;
@@ -18,33 +20,30 @@ interface Props {
 
 // TODO: add image prop to CardMedia with the link to picture
 export const ProductCard: React.FC<Props> = ({ productDetails }) => {
-  const {
-    name,
-    manufacturer,
-    normalPrice,
-    currentPrice,
-    categories,
-  } = productDetails;
+  const { name, manufacturer, normalPrice, currentPrice, categories } =
+    productDetails;
 
   const classes = useStyles(currentPrice);
 
   return (
     <Card className={classes.card}>
-      <CardActionArea onClick={() => console.log("area clicked")}>
-        <CardMedia
-          className={classes.image}
-          component="img"
-          alt={name}
-          height="160"
-          title={name}
-        />
-      </CardActionArea>
+      <Link to={`/products/${productDetails.id}`}>
+        <CardActionArea data-testid="card-image-action">
+          <CardMedia
+            className={classes.image}
+            component="img"
+            alt={name}
+            height="160"
+            title={name}
+          />
+        </CardActionArea>
+      </Link>
       <CardContent>
         <Typography className={classes.productName}>{name}</Typography>
         <Typography className={classes.manufacturer}>
           {manufacturer.name}
         </Typography>
-        {categories.map(category => (
+        {categories.map((category) => (
           <CategoryChip
             key={category.name}
             categoryDetails={category}
@@ -83,7 +82,7 @@ const useStyles = makeStyles({
     color: "#5F3A1C",
   },
   // TODO: check if nicer way to write this
-  normalPrice: currentPrice =>
+  normalPrice: (currentPrice) =>
     currentPrice
       ? {
           fontSize: "1.2rem",

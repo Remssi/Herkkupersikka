@@ -18,4 +18,5 @@ it("should have the background color as the color given as a prop", () => {
   expect(chip).toHaveStyle("backgroundColor: '#F5C6AA'");
 });
 
+// TODO: write test that all chips are visible on the screen (if possible?)
 // TODO: write test for clicking the chip to navigate to category search page

@@ -1,4 +1,5 @@
 export const testProductDetails = {
+  id: "1",
   name: "Persikkapizza",
   normalPrice: 4.99,
   currentPrice: 3.99,
