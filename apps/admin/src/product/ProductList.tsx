@@ -1,5 +1,4 @@
 import {
-  ChipField,
   Datagrid,
   List,
   NumberField,
@@ -8,6 +7,7 @@ import {
   SingleFieldList,
   TextField,
 } from "react-admin";
+import ColoredChipField from "../ColoredChipField";
 
 export const ProductList = () => (
   <List>
@@ -25,7 +25,7 @@ export const ProductList = () => (
         reference="categories"
       >
         <SingleFieldList>
-          <ChipField source="name" />
+          <ColoredChipField source="name" />
         </SingleFieldList>
       </ReferenceArrayField>
       <NumberField source="normalPrice" />
