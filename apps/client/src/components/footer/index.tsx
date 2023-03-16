@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import { FooterLink } from "./FooterLink";
 import { FooterLogo } from "./FooterLogo";
 
@@ -28,7 +28,7 @@ export const Footer: React.FC<Props> = () => {
       </Box>
 
       <Typography className={classes.copyright}>
-        @2021 Herkkupersikka.com
+        @2021-2023 Herkkupersikka.com
       </Typography>
     </Box>
   );

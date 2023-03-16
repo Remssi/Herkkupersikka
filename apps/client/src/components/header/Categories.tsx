@@ -24,18 +24,21 @@ export const Categories: React.FC<Props> = () => {
   useEffect(() => {
     setCategories([
       {
+        id: 1,
         name: "Pizzat",
         color: "#F5C6AA",
         textColor: "#5f3a1c",
         description: "maukkaita pizzoja",
       },
       {
+        id: 2,
         name: "Sushit",
         color: "#84BCDA",
         textColor: "#5f3a1c",
         description: "maukkaita pizzoja",
       },
       {
+        id: 3,
         name: "Kebabit",
         color: "#F7FB89",
         textColor: "#5f3a1c",

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 
 interface Props {
   text: string;

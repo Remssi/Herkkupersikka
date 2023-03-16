@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import { Search } from "../";
-import { Login } from "../login";
+// import { Login } from "../login";
 import { Categories } from "./Categories";
 import { Logo } from "./Logo";
 
@@ -12,7 +12,7 @@ export const Header: React.FC<Props> = () => {
 
   return (
     <>
-      <Login />
+      {/* <Login /> */}
 
       <Box component="header" className={classes.header}>
         <Box className={classes.buttons}>

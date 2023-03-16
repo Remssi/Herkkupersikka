@@ -8,28 +8,32 @@ import {
   StyledEngineProvider,
   ThemeProvider,
 } from "@mui/material";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 const theme = createTheme();
 
 const App = () => {
   return (
-    <Router>
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={theme}>
-          <Header />
+    <Provider store={store}>
+      <Router>
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <Header />
 
-          <Routes>
-            <Route path="/products/:productId" element={<Product />}></Route>
+            <Routes>
+              <Route path="/products/:productId" element={<Product />}></Route>
 
-            <Route path="/categories/:categoryId"></Route>
+              <Route path="/categories/:categoryId"></Route>
 
-            <Route path="/" element={<Main />}></Route>
-          </Routes>
+              <Route path="/" element={<Main />}></Route>
+            </Routes>
 
-          <Footer />
-        </ThemeProvider>
-      </StyledEngineProvider>
-    </Router>
+            <Footer />
+          </ThemeProvider>
+        </StyledEngineProvider>
+      </Router>
+    </Provider>
   );
 };
 

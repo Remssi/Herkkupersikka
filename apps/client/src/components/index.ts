@@ -7,6 +7,7 @@ import { Hero } from "./hero";
 import { Footer } from "./footer";
 import { Header } from "./header";
 import { Search } from "./search";
+import { ProductImageScroller } from "./productImageScroller";
 
 export {
   ProductCard,
@@ -18,4 +19,5 @@ export {
   Footer,
   Header,
   Search,
+  ProductImageScroller,
 };

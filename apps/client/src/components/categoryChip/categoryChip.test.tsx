@@ -6,6 +6,7 @@ afterEach(() => {
 });
 
 const testCategoryDetails = {
+  id: 1,
   name: "Pizzat",
   color: "#F5C6AA",
   textColor: "white",
