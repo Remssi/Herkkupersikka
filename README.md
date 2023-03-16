@@ -16,8 +16,8 @@ The purpose of this project was to try out Nest.js as backend framework, as well
 
 - Navigable website :heavy_check_mark:
 - Product List :heavy_check_mark:
-- Page for products
-- Page for manufacturers
+- Page for products :heavy_check_mark:
+- Page for manufacturers :heavy_check_mark:
 - Show sale price
 - Show products by category
 - Show products by sale
@@ -38,15 +38,17 @@ The purpose of this project was to try out Nest.js as backend framework, as well
 
 ## Core Technologies
 
-| Client           | Admin       | Server         |
-|------------------|-------------|----------------|
-| React            | React       | Node.js        |
-| TypeScript       | TypeScript  | TypeScript     |
-| Material UI      | Material UI | Nest.js        |
-| React Router Dom | React Admin | TypeOrm        |
-| Axios            | Vite        | PostgreSQL     |
-| Jest             |             | Docker Compose |
-| Create React App |             |                |
+| Client                | Admin       | Server     |
+|-----------------------|-------------|------------|
+| React                 | React       | Node.js    |
+| TypeScript            | TypeScript  | TypeScript |
+| Material UI           | Material UI | Nest.js    |
+| React Router Dom      | React Admin | TypeOrm    |
+| Redux                 | Vite        | PostgreSQL |
+| RTK-Query             |             |            |
+| Jest                  |             |            |
+| React Testing Library |             |            |
+| Create React App      |             |            |
 
 ## To start developing:
 
@@ -56,4 +58,4 @@ in client directory: yarn start
 
 in server directory: yarn start:dev
 
-in admin directory: yarn start
+in admin directory: yarn dev
