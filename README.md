@@ -18,7 +18,7 @@ The purpose of this project was to try out Nest.js as backend framework, as well
 - Product List :heavy_check_mark:
 - Page for products :heavy_check_mark:
 - Page for manufacturers :heavy_check_mark:
-- Show sale price
+- Show sale price :heavy_check_mark:
 - Show products by category
 - Show products by sale
 - Show products by manufacturer
