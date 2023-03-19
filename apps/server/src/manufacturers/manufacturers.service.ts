@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { InjectConnection, InjectRepository } from '@nestjs/typeorm';
 import { Connection, Repository } from 'typeorm';
 import { CreateManufacturerDto } from './dto/create-manufacturer.dto';
 import { UpdateManufacturerDto } from './dto/update-manufacturer.dto';
@@ -10,6 +10,7 @@ export class ManufacturersService {
   constructor(
     @InjectRepository(Manufacturer)
     private manufacturersRepository: Repository<Manufacturer>,
+    @InjectConnection()
     private connection: Connection,
   ) {}
 

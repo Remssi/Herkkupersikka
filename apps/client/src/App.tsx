@@ -9,13 +9,13 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import { Provider } from "react-redux";
-import { store } from "./store";
+import { setupStore } from "./store";
 
 const theme = createTheme();
 
 const App = () => {
   return (
-    <Provider store={store}>
+    <Provider store={setupStore()}>
       <Router>
         <StyledEngineProvider injectFirst>
           <ThemeProvider theme={theme}>
