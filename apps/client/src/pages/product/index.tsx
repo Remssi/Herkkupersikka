@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import { skipToken } from "@reduxjs/toolkit/dist/query";
 import { FC } from "react";
@@ -8,6 +8,7 @@ import { ContentWrapper, ProductImageScroller } from "../../components";
 import { useGetProductQuery } from "../../services/productApi";
 import { CategoryChip } from "../../components";
 import Box from "@mui/material/Box";
+import CartIcon from "@mui/icons-material/AddShoppingCart";
 
 interface Props {}
 
@@ -19,8 +20,6 @@ export const Product: FC<Props> = () => {
     isLoading,
   } = useGetProductQuery(productId ?? skipToken);
 
-  const classes = useClasses();
-
   const {
     name,
     manufacturer,
@@ -28,43 +27,70 @@ export const Product: FC<Props> = () => {
     categories,
     description,
     nutrients,
+    normalPrice,
+    currentPrice,
   } = product || {};
+
+  const classes = useClasses({ currentPrice, normalPrice });
 
   return (
     <ContentWrapper>
       <ProductImageScroller />
 
-      <Box className={classes.productInfoContainer}>
-        <Typography className={classes.productName} variant="h1">
-          {name}
-        </Typography>
+      <Box display={"flex"} justifyContent="space-between">
+        <Box>
+          <Box className={classes.productInfoContainer}>
+            <Typography className={classes.productName} variant="h1">
+              {name}
+            </Typography>
 
-        <Link to={`/manufacturers/${manufacturerId}`} className={classes.link}>
-          <Typography className={classes.manufacturerName} variant="h2">
-            {manufacturer?.name}
-          </Typography>
-        </Link>
+            <Link
+              to={`/manufacturers/${manufacturerId}`}
+              className={classes.link}
+            >
+              <Typography className={classes.manufacturerName} variant="h2">
+                {manufacturer?.name}
+              </Typography>
+            </Link>
 
-        <Box className={classes.chipContainer}>
-          {categories?.map((category) => {
-            return (
-              <CategoryChip
-                key={category.id}
-                categoryDetails={category}
-                onClick={() => null}
-              />
-            );
-          })}
+            <Box className={classes.chipContainer}>
+              {categories?.map((category) => {
+                return (
+                  <CategoryChip
+                    key={category.id}
+                    categoryDetails={category}
+                    onClick={() => null}
+                  />
+                );
+              })}
+            </Box>
+          </Box>
         </Box>
 
-        <Box className={classes.detailSection}>
-          <Box className={classes.descriptionContainer}>
-            <Typography>{description}</Typography>
+        <Box className={classes.priceSection}>
+          <Box display={"flex"}>
+            <Typography className={classes.normalPrice}>
+              {normalPrice}
+            </Typography>
+            {currentPrice && normalPrice && currentPrice < normalPrice && (
+              <Typography className={classes.currentPrice}>
+                {currentPrice}
+              </Typography>
+            )}
           </Box>
-          <Box className={classes.nutrientsContainer}>
-            <Typography>Ravintoarvot</Typography>
-            <Typography>{nutrients}</Typography>
-          </Box>
+          <IconButton className={classes.cartButton} size="large">
+            <CartIcon />
+          </IconButton>
+        </Box>
+      </Box>
+
+      <Box className={classes.detailSection}>
+        <Box className={classes.descriptionContainer}>
+          <Typography>{description}</Typography>
+        </Box>
+        <Box className={classes.nutrientsContainer}>
+          <Typography>Ravintoarvot</Typography>
+          <Typography>{nutrients}</Typography>
         </Box>
       </Box>
     </ContentWrapper>
@@ -73,7 +99,7 @@ export const Product: FC<Props> = () => {
 
 const useClasses = makeStyles({
   productInfoContainer: {
-    padding: "0 8px 8px 8px",
+    padding: "0 0 0 8px",
   },
   productName: {
     fontSize: "2em",
@@ -98,9 +124,15 @@ const useClasses = makeStyles({
     gap: "0.2em",
     marginBottom: "3em",
   },
+  priceSection: {
+    textAlign: "right",
+    padding: "0 8px 0 0",
+  },
   detailSection: {
+    marginTop: "4em",
     display: "flex",
     justifyContent: "space-between",
+    padding: "0 8px 8px 8px",
   },
   descriptionContainer: {
     maxWidth: "50%",
@@ -111,5 +143,32 @@ const useClasses = makeStyles({
     borderRadius: "10px",
     backgroundColor: "#FBE6DA",
     padding: "8px",
+  },
+  cartButton: {
+    marginTop: "0.5em",
+    color: "white",
+    backgroundColor: "#84BCDA",
+    "&:hover": {
+      backgroundColor: "#52a1cb",
+    },
+  },
+  normalPrice: ({
+    currentPrice,
+    normalPrice,
+  }: {
+    currentPrice: number | undefined;
+    normalPrice: number | undefined;
+  }) =>
+    currentPrice && normalPrice && currentPrice < normalPrice
+      ? {
+          fontSize: "1.75rem",
+          color: "#5F3A1C",
+          textDecoration: "line-through",
+        }
+      : { fontSize: "1.75rem", color: "#5F3A1C" },
+  currentPrice: {
+    marginLeft: "0.2em",
+    fontSize: "1.75rem",
+    color: "#53D61F",
   },
 });

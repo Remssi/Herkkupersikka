@@ -11,7 +11,6 @@ import { Product } from "../../../../shared/types";
 import makeStyles from "@mui/styles/makeStyles";
 import CartIcon from "@mui/icons-material/AddShoppingCart";
 import { CategoryChip } from "../categoryChip";
-import { redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 interface Props {

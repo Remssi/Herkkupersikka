@@ -10,7 +10,7 @@ export const ProductImageScroller: FC = () => {
       <CardMedia
         className={classes.productImage}
         component="img"
-        height="500px"
+        height="400px"
         alt="product image"
         title="productImage"
       />
