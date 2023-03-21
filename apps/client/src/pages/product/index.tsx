@@ -29,6 +29,7 @@ export const Product: FC<Props> = () => {
     nutrients,
     normalPrice,
     currentPrice,
+    stock,
   } = product || {};
 
   const classes = useClasses({ currentPrice, normalPrice });
@@ -37,62 +38,75 @@ export const Product: FC<Props> = () => {
     <ContentWrapper>
       <ProductImageScroller />
 
-      <Box display={"flex"} justifyContent="space-between">
-        <Box>
-          <Box className={classes.productInfoContainer}>
-            <Typography className={classes.productName} variant="h1">
-              {name}
-            </Typography>
+      {product === undefined && <Typography>Loading...</Typography>}
 
-            <Link
-              to={`/manufacturers/${manufacturerId}`}
-              className={classes.link}
-            >
-              <Typography className={classes.manufacturerName} variant="h2">
-                {manufacturer?.name}
-              </Typography>
-            </Link>
+      {product && (
+        <>
+          <Box display={"flex"} justifyContent="space-between">
+            <Box>
+              <Box className={classes.productInfoContainer}>
+                <Typography className={classes.productName} variant="h1">
+                  {name}
+                </Typography>
 
-            <Box className={classes.chipContainer}>
-              {categories?.map((category) => {
-                return (
-                  <CategoryChip
-                    key={category.id}
-                    categoryDetails={category}
-                    onClick={() => null}
-                  />
-                );
-              })}
+                <Link
+                  role="manufacturer-link"
+                  to={`/manufacturers/${manufacturerId}`}
+                  className={classes.link}
+                >
+                  <Typography className={classes.manufacturerName} variant="h2">
+                    {manufacturer?.name}
+                  </Typography>
+                </Link>
+
+                <Box className={classes.chipContainer}>
+                  {categories?.map((category) => {
+                    return (
+                      <CategoryChip
+                        key={category.id}
+                        categoryDetails={category}
+                        onClick={() => null}
+                      />
+                    );
+                  })}
+                </Box>
+              </Box>
+            </Box>
+
+            <Box className={classes.priceSection}>
+              <Box display={"flex"}>
+                <Typography className={classes.normalPrice}>
+                  {normalPrice}
+                </Typography>
+                {currentPrice && normalPrice && currentPrice < normalPrice && (
+                  <Typography className={classes.currentPrice}>
+                    {currentPrice}
+                  </Typography>
+                )}
+              </Box>
+              <Typography>Varastossa: {stock}</Typography>
+              <IconButton
+                title="add-to-cart-button"
+                className={classes.cartButton}
+                size="large"
+                disabled={stock === 0}
+              >
+                <CartIcon />
+              </IconButton>
             </Box>
           </Box>
-        </Box>
 
-        <Box className={classes.priceSection}>
-          <Box display={"flex"}>
-            <Typography className={classes.normalPrice}>
-              {normalPrice}
-            </Typography>
-            {currentPrice && normalPrice && currentPrice < normalPrice && (
-              <Typography className={classes.currentPrice}>
-                {currentPrice}
-              </Typography>
-            )}
+          <Box className={classes.detailSection}>
+            <Box className={classes.descriptionContainer}>
+              <Typography>{description}</Typography>
+            </Box>
+            <Box className={classes.nutrientsContainer}>
+              <Typography>Ravintoarvot</Typography>
+              <Typography>{nutrients}</Typography>
+            </Box>
           </Box>
-          <IconButton className={classes.cartButton} size="large">
-            <CartIcon />
-          </IconButton>
-        </Box>
-      </Box>
-
-      <Box className={classes.detailSection}>
-        <Box className={classes.descriptionContainer}>
-          <Typography>{description}</Typography>
-        </Box>
-        <Box className={classes.nutrientsContainer}>
-          <Typography>Ravintoarvot</Typography>
-          <Typography>{nutrients}</Typography>
-        </Box>
-      </Box>
+        </>
+      )}
     </ContentWrapper>
   );
 };

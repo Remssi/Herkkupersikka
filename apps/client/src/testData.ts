@@ -7,7 +7,7 @@ export const testProductDetails: Product = {
   currentPrice: 3.99,
   description: "Herkullisin pizza ikinä!",
   nutrients: ["energia: 376kcal", "suola: 2g"],
-  stock: 25,
+  stock: 0,
   manufacturerId: 1,
   manufacturer: { id: 1, name: "Tohtori Persikka" },
   categoryIds: [1],
@@ -30,7 +30,7 @@ export const testFetchedProduct = {
   description: "Maailman herkullisin persikka.",
   image: " ",
   nutrients: "100kcal/100g.",
-  stock: 200,
+  stock: 0,
   manufacturerId: 4,
   saleId: 3,
   categories: [

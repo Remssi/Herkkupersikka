@@ -19,7 +19,7 @@ interface Props {
 
 // TODO: add image prop to CardMedia with the link to picture
 export const ProductCard: React.FC<Props> = ({ productDetails }) => {
-  const { name, manufacturer, normalPrice, currentPrice, categories } =
+  const { name, manufacturer, normalPrice, currentPrice, categories, stock } =
     productDetails;
 
   const classes = useStyles(currentPrice);
@@ -53,7 +53,12 @@ export const ProductCard: React.FC<Props> = ({ productDetails }) => {
       <CardActions disableSpacing={true}>
         <Typography className={classes.normalPrice}>{normalPrice}</Typography>
         <Typography className={classes.currentPrice}>{currentPrice}</Typography>
-        <IconButton className={classes.cartButton} size="large">
+        <IconButton
+          title="add-to-cart-button"
+          className={classes.cartButton}
+          size="large"
+          disabled={stock === 0}
+        >
           <CartIcon />
         </IconButton>
       </CardActions>
